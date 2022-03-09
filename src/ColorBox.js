@@ -11,7 +11,7 @@ function ColorBox(props){
         setCopied(true)
         setTimeout(() => {
             setCopied(false);
-        }, 1200);
+        }, 1400);
     }
     return (
         <CopyToClipboard text={background} onCopy={changeCopyState}>
