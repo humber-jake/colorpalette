@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import "./Palette.css"
 
-class Palette extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            level: 500
-        }
-        this.changeLevel = this.changeLevel.bind(this);
+function Palette(props){
+
+    const [level, setLevel] = useState(500)
+    const [format, setFormat] = useState('hex')
+    const { colors } = props.palette;
+    const colorBoxes = colors[level].map(color => (
+        <ColorBox key={color['hex']} background={color[format]} name={color.name}/>
+    ))
+
+
+    const changeLevel = level => {
+        setLevel(level);
+    }
+    const updateFormat = f => {
+        setFormat(f)
     }
 
-    changeLevel(level){
-        this.setState({level});
-    }
-    
-    render() {
-        const { colors } = this.props.palette;
-        const { level } = this.state;
+    return (
+        <div className="Palette">
 
-        const colorBoxes = colors[level].map(color => (
-            <ColorBox background={color.hex} name={color.name}/>
-        ))
+            <Navbar 
+                level={level} 
+                changeLevel={changeLevel}
+                updateFormat={updateFormat}
+            />
 
-        return (
-            <div className="Palette">
-                <Navbar level={level} changeLevel={this.changeLevel}/>
-                {/* Navbar! */}
-                <div className="Palette-colors">
-                    {colorBoxes}
-                </div>
-                {/* Footer! */}
+            <div className="Palette-colors">
+                {colorBoxes}
             </div>
-        );
-    }
+
+        </div>
+    );
 }
 
 export default Palette;
