@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './Navbar.css'
+import { Link } from 'react-router-dom'
 import { IconButton, MenuItem, Select } from '@material-ui/core';
 import { Snackbar } from '@material-ui/core';
 import { Close } from '@material-ui/icons'
@@ -21,7 +22,7 @@ function Navbar(props){
         return (
             <header className="Navbar">
                 <div className='logo'>
-                    <a href="#">swatches</a>
+                    <Link to="/">swatches</Link>
                 </div>
                 <div className="slider-container">
                     <span>Level: {level}</span>
