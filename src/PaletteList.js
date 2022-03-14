@@ -13,6 +13,7 @@ const styles = {
     },
     container: {
         width: '50%',
+        height: '100vh',
         display: 'flex',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -29,8 +30,11 @@ const styles = {
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '5%'
+        gridGap: '5%',
     },
+    link: {
+        textDecoration: 'none'
+    }
 }
 
 function PaletteList(props) {
@@ -44,7 +48,7 @@ function PaletteList(props) {
                 </nav>
                 <div className={classes.palettes}>
                     {palettes.map(
-                        p => <Link key={p.id} to={`/palette/${p.id}`}>
+                        p => <Link className={classes.link} key={p.id} to={`/palette/${p.id}`}>
                             <MiniPalette {...p}/>
                         </Link>
                     )}
