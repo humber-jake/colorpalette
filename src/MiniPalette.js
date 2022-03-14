@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from "@material-ui/styles"
-import { CallMissedSharp } from '@material-ui/icons';
 
 const styles = {
     root: {

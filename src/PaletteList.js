@@ -39,6 +39,11 @@ const styles = {
 
 function PaletteList(props) {
     const { palettes, classes } = props;
+    const allPalettes = palettes.map(
+        (p, i) => <Link className={classes.link} key={p.id} to={`/palette/${p.id}`}>
+            <MiniPalette key={p.id} {...p}/>
+        </Link>
+    )
 
     return (
         <div className={classes.root}>
@@ -47,11 +52,7 @@ function PaletteList(props) {
                     <h1>Swatches</h1>
                 </nav>
                 <div className={classes.palettes}>
-                    {palettes.map(
-                        p => <Link className={classes.link} key={p.id} to={`/palette/${p.id}`}>
-                            <MiniPalette {...p}/>
-                        </Link>
-                    )}
+                    {allPalettes}
                 </div>
             </div>
         </div>

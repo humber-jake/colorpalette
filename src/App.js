@@ -9,8 +9,9 @@ function App() {
 
   return (
     <Routes>
-        <Route exact path='/' element={<PaletteList palettes={SeedColors}/>}/>
-        <Route exact path='palette/:id' element={<Palette />}/>
+        <Route path='/' element={<PaletteList palettes={SeedColors}/>}/>
+        <Route path='palette/:id' element={<Palette />}/>
+        <Route path='/palette/:paletteId/:colorId' element={<h1>Single Color page!</h1>}/>
     </Routes>
 
     // <div className="App">
