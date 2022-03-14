@@ -3,6 +3,7 @@ import Palette from './Palette';
 import { Route, Routes } from 'react-router-dom';
 import SeedColors from './seedColors.js';
 import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <Routes>
         <Route path='/' element={<PaletteList palettes={SeedColors}/>}/>
         <Route path='palette/:id' element={<Palette />}/>
-        <Route path='/palette/:paletteId/:colorId' element={<h1>Single Color page!</h1>}/>
+        <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette />}/>
     </Routes>
 
     // <div className="App">

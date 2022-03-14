@@ -13,7 +13,7 @@ function Palette(props){
     const [format, setFormat] = useState('hex')
     const { colors, paletteName, emoji } = palette;
     const colorBoxes = colors[level].map(color => (
-        <ColorBox key={color.name} background={color[format]} name={color.name}/>
+        <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color}/>
     ))
 
 
