@@ -8,7 +8,7 @@ import { Snackbar } from '@material-ui/core';
 import { Close } from '@material-ui/icons'
 
 function Navbar(props){
-        const { level, changeLevel, updateFormat } = props;
+        const { level, changeLevel, updateFormat, showSlider } = props;
         const [format, setFormat] = useState('hex');
         const [open, setOpen] = useState(false);
         const handleChange = (e) => {
@@ -20,22 +20,26 @@ function Navbar(props){
             setOpen(false);
         }
         return (
+
             <header className="Navbar">
                 <div className='logo'>
                     <Link to="/">swatches</Link>
                 </div>
-                <div className="slider-container">
-                    <span>Level: {level}</span>
-                    <div className="slider" id='slider'>
-                        <Slider 
-                            defaultValue={level} 
-                            min={100} 
-                            max={900}
-                            step={100}
-                            onChange={changeLevel} 
-                            />
-                    </div>    
-                </div>
+
+                { showSlider &&
+                    <div className="slider-container">
+                        <span>Level: {level}</span>
+                        <div className="slider" id='slider'>
+                            <Slider 
+                                defaultValue={level} 
+                                min={100} 
+                                max={900}
+                                step={100}
+                                onChange={changeLevel} 
+                                />
+                        </div>    
+                    </div>
+                }
                 <div className='select-container'>
                     <Select value={format} onChange={handleChange}>
                         <MenuItem value='hex'>HEX - #FFFFFF</MenuItem>

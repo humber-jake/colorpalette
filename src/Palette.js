@@ -4,6 +4,7 @@ import ColorBox from './ColorBox';
 import "./Palette.css"
 import { useParams } from 'react-router-dom';
 import { findPalette, generatePalette } from './ColorHelpers';
+import PaletteFooter from './PaletteFooter';
 
 function Palette(props){
 
@@ -25,18 +26,14 @@ function Palette(props){
 
     return (
         <div className="Palette">
-
             <Navbar 
                 level={level} 
                 changeLevel={changeLevel}
                 updateFormat={updateFormat}
+                showSlider
             />
-
             <div className="Palette-colors">{colorBoxes}</div>
-            <footer className='Palette-footer'>
-                {paletteName}
-                <span className='emoji'>{emoji}</span>
-            </footer>
+            <PaletteFooter {...palette}/>
         </div>
     );
 }

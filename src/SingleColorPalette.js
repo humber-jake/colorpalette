@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { findPalette, generatePalette } from './ColorHelpers';
 import ColorBox from './ColorBox';
+import PaletteFooter from "./PaletteFooter.js"
 
 function SingleColorPalette(props) {
 
     let { paletteId, colorId } = useParams();
     let palette = generatePalette(findPalette(paletteId));
+
+    const [format, setFormat] = useState('hex')
+    const updateFormat = f => {
+        setFormat(f)
+    }
 
     function getShades(palette, id){
         let result = [];
@@ -24,15 +30,16 @@ function SingleColorPalette(props) {
     let shades = getShades(palette, colorId);
 
     let colorBoxes = shades.map(s =>
-            <ColorBox key={s.name} {...s} background={s.hex} showLink={false}/>
+            <ColorBox key={s.name} {...s} background={s[format]} showLink={false}/>
         )
 
     return (
         <div className='Palette'>
-            <Navbar />
+            <Navbar showSlider={false} updateFormat={updateFormat}/>
             <div className="Palette-colors">
                 {colorBoxes}
             </div>
+            <PaletteFooter {...palette}/>
         </div>
     );
 }
