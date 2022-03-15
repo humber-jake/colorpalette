@@ -45,6 +45,11 @@
     opacity: 1;
     transition: 400ms;
 }
+.ColorBox:hover .back-button{
+    background: #ffffff88;
+    transition: 400ms;
+}
+
 
 .box-content {
     position: absolute;
@@ -115,6 +120,23 @@
     transform: scale(1);
     z-index: 15;
     transition: transform 40ms ease-in-out,
-                opacity 700ms ease-in-out;
+    opacity 700ms ease-in-out;
     transition-delay: 100ms;
+    
 }
+.light-text {
+    color: rgba(255,255,255,0.8)
+}
+.dark-text {
+    color: rgba(0,0,0,0.8);
+}
+
+
+
+
+
+
+
+
+
+
