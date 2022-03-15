@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { useParams} from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { findPalette, generatePalette } from './ColorHelpers';
 import ColorBox from './ColorBox';
 import PaletteFooter from "./PaletteFooter.js"
@@ -34,10 +34,13 @@ function SingleColorPalette(props) {
         )
 
     return (
-        <div className='Palette'>
+        <div className='SingleColorPalette Palette'>
             <Navbar showSlider={false} updateFormat={updateFormat}/>
             <div className="Palette-colors">
                 {colorBoxes}
+                <div className='go-back ColorBox'>
+                    <Link to={`/palette/${paletteId}`} className='back-button'>Go back</Link>
+                </div>
             </div>
             <PaletteFooter {...palette}/>
         </div>
