@@ -14,7 +14,7 @@ function Palette(props){
     let palette = generatePalette(findPalette(id));
     const [level, setLevel] = useState(500)
     const [format, setFormat] = useState('hex')
-    const { colors, paletteName, emoji } = palette;
+    const { colors } = palette;
     const colorBoxes = colors[level].map(color => (
         <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color} showFullPalette/>
     ))

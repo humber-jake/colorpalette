@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { IconButton, MenuItem, Select } from '@material-ui/core';
 import { Snackbar } from '@material-ui/core';
 import { Close } from '@material-ui/icons'
+import { withStyles } from '@material-ui/styles';
+import styles from './styles/NavbarStyles.js'
+import 'rc-slider/assets/index.css';
 
 function Navbar(props){
-        const { level, changeLevel, updateFormat, showSlider } = props;
+        const { level, changeLevel, updateFormat, showSlider, classes } = props;
         const [format, setFormat] = useState('hex');
         const [open, setOpen] = useState(false);
         const handleChange = (e) => {
@@ -21,15 +22,15 @@ function Navbar(props){
         }
         return (
 
-            <header className="Navbar">
-                <div className='logo'>
+            <header className={classes.Navbar}>
+                <div className={classes.logo}>
                     <Link to="/">swatches</Link>
                 </div>
 
                 { showSlider &&
-                    <div className="slider-container">
+                    <div>
                         <span>Level: {level}</span>
-                        <div className="slider" id='slider'>
+                        <div className={classes.slider}>
                             <Slider 
                                 defaultValue={level} 
                                 min={100} 
@@ -40,7 +41,7 @@ function Navbar(props){
                         </div>    
                     </div>
                 }
-                <div className='select-container'>
+                <div className={classes.selectContainer}>
                     <Select value={format} onChange={handleChange}>
                         <MenuItem value='hex'>HEX - #FFFFFF</MenuItem>
                         <MenuItem value='rgb'>RGB - rgb(255,255,255)</MenuItem>
@@ -71,4 +72,4 @@ function Navbar(props){
         );
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
