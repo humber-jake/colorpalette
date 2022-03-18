@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
-import "./Palette.css"
 import { useParams } from 'react-router-dom';
 import { findPalette, generatePalette } from './ColorHelpers';
-import PaletteFooter from './PaletteFooter';
+import PaletteFooter from './PaletteFooter.js';
+import { withStyles } from "@material-ui/styles"
+import styles from './styles/PaletteStyles.js'
 
 function Palette(props){
 
+    const { classes } = props;
     let { id } = useParams();
     let palette = generatePalette(findPalette(id));
     const [level, setLevel] = useState(500)
     const [format, setFormat] = useState('hex')
     const { colors, paletteName, emoji } = palette;
     const colorBoxes = colors[level].map(color => (
-        <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color} showLink/>
+        <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color} showFullPalette/>
     ))
 
     const changeLevel = level => {
@@ -25,17 +27,17 @@ function Palette(props){
     }
 
     return (
-        <div className="Palette">
+        <div className={classes.palette}>
             <Navbar 
                 level={level} 
                 changeLevel={changeLevel}
                 updateFormat={updateFormat}
                 showSlider
             />
-            <div className="Palette-colors">{colorBoxes}</div>
+            <div className={classes.colors}>{colorBoxes}</div>
             <PaletteFooter {...palette}/>
         </div>
     );
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
