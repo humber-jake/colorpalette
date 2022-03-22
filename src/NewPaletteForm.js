@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,6 +16,7 @@ import DraggableColorBox from './DraggableColorBox.js'
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const drawerWidth = 400;
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,7 +76,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
+  let navigate = useNavigate();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(true);
@@ -109,6 +112,17 @@ function NewPaletteForm() {
       setNewName(e.target.value)
   }
 
+  function handleSubmit(){
+    let newPaletteName = "New Test Palette";
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+      colors: colors
+    }
+    props.savePalette(newPalette)
+    console.log(newPalette);
+    navigate('/');
+  }
   function addNewColor(){
       const newColor = {
           color: currentColor,
@@ -123,6 +137,7 @@ function NewPaletteForm() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color='default'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -140,6 +155,7 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant='contained' color='primary' onClick={handleSubmit}>Save Palette</Button>
         </Toolbar>
       </AppBar>
       <Drawer

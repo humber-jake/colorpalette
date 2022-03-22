@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar.js';
 import { useParams, Link } from 'react-router-dom';
-import { findPalette, generatePalette } from './ColorHelpers.js';
+import { generatePalette } from './ColorHelpers.js';
 import ColorBox from './ColorBox.js';
 import PaletteFooter from "./PaletteFooter.js"
 import { withStyles } from '@material-ui/styles';
@@ -9,7 +9,7 @@ import styles from './styles/PaletteStyles.js'
 
 function SingleColorPalette(props) {
 
-    const { classes } = props;
+    const { classes, findPalette } = props;
     let { paletteId, colorId } = useParams();
     let palette = generatePalette(findPalette(paletteId));
 
