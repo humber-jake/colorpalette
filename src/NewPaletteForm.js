@@ -53,6 +53,23 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  container: {
+    margin: '0 auto',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
+  buttons: {
+    width: '90%',
+    display: 'flex',
+    justifyContent: 'space-evenly'
+  },
+  button: {
+    width: '45%',
+  },
 }));
 
 function NewPaletteForm(props) {
@@ -116,27 +133,31 @@ function NewPaletteForm(props) {
             {<ChevronLeftIcon />}
           </IconButton>
         </div>
-        <Typography variant='h4' >Design New Palette</Typography>
-        <div>
-            <Button 
-              variant='contained' 
-              color='secondary' 
-              onClick={clearPalette}
-            >Clear Palette
-            </Button>
-            <Button 
-              variant='contained' 
-              color='primary' 
-              onClick={addRandomColor}
-              disabled={isPaletteFull}
-            >Random Color
-            </Button>
+        <div className={classes.container}>
+          <Typography variant='h4' gutterBottom>Design New Palette</Typography>
+          <div className={classes.buttons}>
+              <Button 
+                className={classes.button}
+                variant='contained' 
+                color='secondary' 
+                onClick={clearPalette}
+              >Clear Palette
+              </Button>
+              <Button 
+                className={classes.button}
+                variant='contained' 
+                color='primary' 
+                onClick={addRandomColor}
+                disabled={isPaletteFull}
+              >Random Color
+              </Button>
+          </div>
+          <ColorPickerForm 
+              colors={colors}
+              setColors={setColors}
+              isPaletteFull={isPaletteFull}
+            />
         </div>
-        <ColorPickerForm 
-          colors={colors}
-          setColors={setColors}
-          isPaletteFull={isPaletteFull}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {

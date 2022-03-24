@@ -101,30 +101,7 @@ function NewPaletteFormNav(props) {
                     Create New Palette
                 </Typography>
                 </Toolbar>
-                <div className={classes.navButtons}>
-                    <ValidatorForm onSubmit={handleSubmit}>
-                        <TextValidator 
-                            label='Palette Name' 
-                            value={newPaletteName} 
-                            onChange={handlePaletteChange}
-                            validators={['required', 'isPaletteNameUnique']}
-                            errorMessages={['Enter a palette name.','Name already in use.']}
-                        />
-                        <Button 
-                            variant='contained' 
-                            color='primary' 
-                            type='submit'
-                        >Save Palette
-                        </Button>
-                    </ValidatorForm>
-                        <Link to='/'>
-                            <Button 
-                                variant='contained'
-                                color='primary'  
-                            >Go Back
-                            </Button>
-                        </Link>
-                    </div>
+                
             </AppBar>
         </div>
     );
