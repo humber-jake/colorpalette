@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import NewPaletteFormNav from './NewPaletteFormNav.js';
-import ColorPickerForm from './styles/ColorPickerForm.js';
+import ColorPickerForm from './ColorPickerForm.js';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';

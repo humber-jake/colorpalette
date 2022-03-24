@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button'
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core';
+import NewPaletteDialogue from './NewPaletteDialogue';
 
 const drawerWidth = 400;
 
@@ -43,7 +44,6 @@ const styles = theme => ({
 })
 
 function NewPaletteFormNav(props) {
-    let navigate = useNavigate();
     const { classes, 
             open, 
             palettes,
@@ -51,34 +51,9 @@ function NewPaletteFormNav(props) {
             colors,
             savePalette
         } = props;
-
-    const [newPaletteName, setNewPaletteName] = useState('');
-
-    function handlePaletteChange(e){
-        setNewPaletteName(e.target.value)
-    }
-    
-    function handleSubmit(){
-        const newPalette = {
-          paletteName: newPaletteName,
-          id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-          colors: colors
-        }
-        props.savePalette(newPalette)
-        console.log(newPalette);
-        navigate('/');
-      }
-
-    useEffect(() => {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-          return palettes.every(
-            ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-          );
-        });
-      });
       
     return (
-        <div>
+        <div className={classes.root}>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -101,7 +76,20 @@ function NewPaletteFormNav(props) {
                     Create New Palette
                 </Typography>
                 </Toolbar>
-                
+                <div className={classes.navButtons}>
+                    <NewPaletteDialogue
+                      savePalette={savePalette}
+                      colors={colors} 
+                      palettes={palettes}
+                    />
+                        <Link to='/'>
+                            <Button 
+                                variant='contained'
+                                color='primary'  
+                            >Go Back
+                            </Button>
+                        </Link>
+                    </div>
             </AppBar>
         </div>
     );
