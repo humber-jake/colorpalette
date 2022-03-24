@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,8 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button'
 import {ChromePicker} from 'react-color'
-import DraggableColorBox from './DraggableColorBox.js'
+import DraggableColorList from './DraggableColorList.js'
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
@@ -79,12 +80,22 @@ const useStyles = makeStyles((theme) => ({
 function NewPaletteForm(props) {
   let navigate = useNavigate();
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState('');
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState([
+    {color: "#ff00aa", name: "Colour One"},
+    {color: "#ff99bb", name: "Colour Two"},
+    {color: "#f4b1cc", name: "Colour Three"},
+    {color: "black", name: "black"},
+    {color: "orange", name: "orange"},
+    {color: "blue", name: "blue"},
+    {color: "yellow", name: "yellow"},
+    {color: "red", name: "red"},
+    {color: "green", name: "green"},
+  ]);
   const [newColorName, setNewColorName] = useState('');
   const [newPaletteName, setNewPaletteName] = useState('');
+
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -123,6 +134,12 @@ function NewPaletteForm(props) {
       setNewPaletteName(e.target.value)
   }
 
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    setColors(
+      arrayMove(colors, oldIndex, newIndex)
+    )
+  };
+
   function handleSubmit(){
     const newPalette = {
       paletteName: newPaletteName,
@@ -146,7 +163,6 @@ function NewPaletteForm(props) {
     const newColors = colors.filter(color => color.name !== name) 
     setColors(newColors);
   }
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -226,10 +242,16 @@ function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map(color => <DraggableColorBox key={color.name} color={color.color} name={color.name} deleteColor={() => deleteColor(color.name)}/>)}
+        <DraggableColorList 
+          colors={colors} 
+          deleteColor={deleteColor}
+          axis='xy'
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );
+  
 }
 
 export default NewPaletteForm;

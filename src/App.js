@@ -8,7 +8,6 @@ import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import CopyMessage from './CopyMessage.js'
 
-
 function App() {
 
   const [palettes, setPalettes] = useState([...SeedColors]);
@@ -25,7 +24,7 @@ function App() {
     <Routes>
         <Route path='/' element={<PaletteList palettes={palettes}/>}/>
         <Route path='/palette/new' element={<NewPaletteForm savePalette={savePalette} palettes={palettes}/>}/>
-        <Route path='/test' element={<CopyMessage background='#054a24'/>}/>
+        {/* <Route path='/test' element={ }/> */}
         <Route path='palette/:id' element={<Palette findPalette={findPalette}/>}/>
         <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette findPalette={findPalette}/>}/>
     </Routes>
