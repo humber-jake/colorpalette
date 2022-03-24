@@ -12,7 +12,7 @@ const styles = {
         display: 'inline-block',
         position: 'relative',
         cursor: 'pointer',
-        marginBottom: '-3.5px',
+        marginBottom: '-4.5px',
         "&:hover svg": {
             color: props => chroma(props.color).luminance() < 0.06 ? 'rgba(255, 255, 255, 1.0)' : 'rgba(0, 0, 0, 0.6)',
             transform: 'scale(1.5)'
