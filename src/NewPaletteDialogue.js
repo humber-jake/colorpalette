@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {Picker} from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css'
 
 function NewPaletteDialogue(props) {
     let navigate = useNavigate();
@@ -41,13 +43,16 @@ function NewPaletteDialogue(props) {
       });
   
     return (
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onClose={hideForm}>
+        <Dialog open={open} aria-labelledby="form-dialog-title" onClose={hideForm}>
           <DialogTitle id="form-dialog-title">Choose Palette Name</DialogTitle>
         <ValidatorForm onSubmit={handleSubmit}>
           <DialogContent>
             <DialogContentText>
               Enter a name for the new palette. Each palette must have a unique name.
             </DialogContentText>
+
+            <Picker/>
+
                 <TextValidator 
                     label='Palette Name' 
                     value={newPaletteName} 
