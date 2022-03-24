@@ -25,6 +25,7 @@ const styles = theme => ({
         }),
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         height: '64px'
       },
       appBarShift: {
@@ -39,7 +40,13 @@ const styles = theme => ({
         marginRight: theme.spacing(2),
       }, 
       navButtons: {
-
+        marginRight: '1rem',
+        "& a": {
+          textDecoration: 'none'
+        }
+      },
+      button: {
+        margin: '0 0.5rem',
       }
 })
 
@@ -51,7 +58,15 @@ function NewPaletteFormNav(props) {
             colors,
             savePalette
         } = props;
+
+    const [formShowing, setFormShowing] = useState(false);
       
+    function showForm(){
+      setFormShowing(true);
+    }
+    function hideForm(){
+      setFormShowing(false);
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -77,20 +92,24 @@ function NewPaletteFormNav(props) {
                 </Typography>
                 </Toolbar>
                 <div className={classes.navButtons}>
-                    <NewPaletteDialogue
+                        <Link to='/'>
+                            <Button variant='contained'color='secondary' className={classes.button}>
+                              Go Back
+                            </Button>
+                        </Link>
+                        <Button variant="contained" color="primary" onClick={showForm} className={classes.button}>
+                          Save
+                        </Button>
+                    </div>
+            </AppBar>
+
+            {formShowing &&
+              <NewPaletteDialogue
                       savePalette={savePalette}
                       colors={colors} 
                       palettes={palettes}
-                    />
-                        <Link to='/'>
-                            <Button 
-                                variant='contained'
-                                color='primary'  
-                            >Go Back
-                            </Button>
-                        </Link>
-                    </div>
-            </AppBar>
+                      hideForm={hideForm}
+                    />}
         </div>
     );
 }
