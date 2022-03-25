@@ -11,6 +11,10 @@ box-sizing: border-box;
     font-family: Josefin Sans, Helvetica, Helvetica Neue, Arial, sans-serif;
     font-size: 16px;
     font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }    
 
 .stage {
@@ -21,9 +25,7 @@ box-sizing: border-box;
     justify-content: center;
 }
 .wrapper {
-    position: absolute;
-    top: 40vh;
-    left: 40vw;
+    position: relative;
     color: #fff;
     font-size: 4.5rem;
     text-transform: uppercase;
@@ -399,8 +401,7 @@ transform: translateY(-101%);
 }
 .colorName{
     font-size: 2rem;
-    margin-top: 4rem;
-    margin-left: 2rem;
+    margin-top: 1rem;
     opacity: 0;
     text-transform: uppercase;
     animation: colorName 5s ease-in-out ;

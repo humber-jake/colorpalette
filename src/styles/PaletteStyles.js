@@ -46,7 +46,19 @@ const styles = {
         "&:hover span": {
             opacity: 1,
             transition: "opacity 200ms linear"
-        }
+        },
+        [sizes.andDown("lg")]: {
+            width: "25%",
+            height: "33.3333%"
+        },
+        [sizes.andDown("md")]: {
+        width: "50%",
+        height: "20%"
+        },
+        [sizes.andDown("xs")]: {
+        width: "100%",
+        height: "10%"
+        },
     }
 }
 

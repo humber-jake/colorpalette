@@ -35,9 +35,9 @@ function CopyMessage(props) {
                         </div>
                     </div>
                 </div>
-                        <div className={`colorName ${textColor(background)}`}>
-                            {background}
-                        </div>
+            </div>
+            <div className={`colorName ${textColor(background)}`}>
+                {background}
             </div>
         </div>
     );

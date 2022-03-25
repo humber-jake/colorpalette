@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { useEffect, useState } from 'react';
 import Palette from './Palette';
 import { Route, Routes } from 'react-router-dom';
