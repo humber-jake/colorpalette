@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles'
 import styles from './styles/ColorBoxStyles.js'
 import CopyMessage from './CopyMessage.js';
-// import CopyMessage from './CopyMessage.js';
 
 
 function ColorBox(props){
@@ -30,8 +29,6 @@ function ColorBox(props){
 
                 <div className={`${classes.copyMessage} ${copied && classes.showCopyMessage}`}>
                     <div className={classes.copyText}>
-                        {/* <h1>Copied!</h1>
-                        <p>{background}</p> */}
                         {copied && <CopyMessage background={background}/>}
                     </div>
                 </div>

@@ -6,7 +6,6 @@ import SeedColors from './seedColors.js';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
-import CopyMessage from './CopyMessage.js'
 
 function App() {
 

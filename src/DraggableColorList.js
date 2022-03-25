@@ -9,7 +9,7 @@ function DraggableColorList({colors, deleteColor}) {
             <DraggableColorBox 
                 index={i}
                 key={color.name} 
-                color={color.color} 
+                background={color.color} 
                 name={color.name} 
                 deleteColor={() => deleteColor(color.name)}
             />)}

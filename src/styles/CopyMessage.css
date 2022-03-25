@@ -399,8 +399,8 @@ transform: translateY(-101%);
 }
 .colorName{
     font-size: 2rem;
-    margin-top: 8rem;
-    margin-left: -3rem;
+    margin-top: 4rem;
+    margin-left: 2rem;
     opacity: 0;
     text-transform: uppercase;
     animation: colorName 5s ease-in-out ;

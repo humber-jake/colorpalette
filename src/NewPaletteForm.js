@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import NewPaletteFormNav from './NewPaletteFormNav.js';
 import ColorPickerForm from './ColorPickerForm.js';
@@ -10,85 +9,27 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button'
 import DraggableColorList from './DraggableColorList.js'
 import { arrayMove } from 'react-sortable-hoc';
-
-const drawerWidth = 400;
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    height: 'calc(100vh - 64px)',
-    padding: 0,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  container: {
-    margin: '0 auto',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  },
-  buttons: {
-    width: '90%',
-    display: 'flex',
-    justifyContent: 'space-evenly'
-  },
-  button: {
-    width: '45%',
-  },
-}));
+import useStyles from './styles/NewPaletteFormStyles'
 
 function NewPaletteForm(props) {
+  
   const {palettes, savePalette} = props;
+  
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [colors, setColors] = useState(palettes[0].colors);
+  
   const isPaletteFull = colors.length >= 20;
 
-
-  const handleDrawerOpen = () => {
+  function handleDrawerOpen(){
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  function handleDrawerClose(){
     setOpen(false);
   };
 
-  const onSortEnd = ({oldIndex, newIndex}) => {
+  function onSortEnd({oldIndex, newIndex}){
     setColors(
       arrayMove(colors, oldIndex, newIndex)
     )
@@ -119,6 +60,7 @@ function NewPaletteForm(props) {
         colors={colors}
         savePalette={savePalette}
       />
+
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -133,6 +75,7 @@ function NewPaletteForm(props) {
             {<ChevronLeftIcon />}
           </IconButton>
         </div>
+
         <div className={classes.container}>
           <Typography variant='h4' gutterBottom>Design New Palette</Typography>
           <div className={classes.buttons}>
@@ -143,6 +86,7 @@ function NewPaletteForm(props) {
                 onClick={clearPalette}
               >Clear Palette
               </Button>
+
               <Button 
                 className={classes.button}
                 variant='contained' 
@@ -152,6 +96,7 @@ function NewPaletteForm(props) {
               >Random Color
               </Button>
           </div>
+          
           <ColorPickerForm 
               colors={colors}
               setColors={setColors}
@@ -159,6 +104,7 @@ function NewPaletteForm(props) {
             />
         </div>
       </Drawer>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,

@@ -9,25 +9,25 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {Picker} from 'emoji-mart'
 import 'emoji-mart/css/emoji-mart.css'
+import styles from './styles/NewPaletteDialogueStyles'
 import { withStyles } from '@material-ui/styles'
 
-const styles = {
-    emojiButton: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    },
-    emoji:{
-        fontSize: '4rem',
-    },
-}
-
 function NewPaletteDialogue(props) {
-    let navigate = useNavigate();
+
     const { colors, palettes, hideForm, savePalette, classes } = props;
+
+    const navigate = useNavigate();
     const [emoji, setEmoji] = useState('🙂');
     const [stage, setStage] = useState('form');
     const [newPaletteName, setNewPaletteName] = useState('');
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
+          return palettes.every(
+            ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+          );
+        });
+      });
 
     function showEmojiPicker(){
         setStage('emoji')
@@ -49,14 +49,6 @@ function NewPaletteDialogue(props) {
         savePalette(newPalette)
         navigate('/');
     }
-
-    useEffect(() => {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-          return palettes.every(
-            ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-          );
-        });
-      });
   
     return (
         <div>

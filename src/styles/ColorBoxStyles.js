@@ -1,4 +1,4 @@
-import chroma from 'chroma-js'
+import { DYNAMIC_TEXT_COLOR, DYNAMIC_BUTTON_COLOR } from '../constants'
 
 const styles = {
     boxContent: {
@@ -25,10 +25,10 @@ const styles = {
         }
     },
     colorName: {
-        color: props => chroma(props.background).luminance() < 0.06 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'
+        color: DYNAMIC_TEXT_COLOR
     },
     copyButton: {
-        color: props => chroma(props.background).luminance() > 0.7 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+        color: DYNAMIC_BUTTON_COLOR,
         width: '100px',
         height: '30px',
         position: 'absolute',
@@ -81,10 +81,10 @@ const styles = {
         transform: 'scale(0.1)',
     },
     copyText: {
-        color: props => chroma(props.background).luminance() > 0.7 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)'
+        color: DYNAMIC_BUTTON_COLOR
     },
     seeMore: {
-        color: props => chroma(props.background).luminance() > 0.7 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+        color: DYNAMIC_BUTTON_COLOR,
         background: '#ffffff44',
         position: 'absolute',
         border: 'none',
