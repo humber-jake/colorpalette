@@ -7,8 +7,8 @@ import styles from './styles/PaletteListStyles.js'
 function PaletteList(props) {
     const { palettes, classes } = props;
     const allPalettes = palettes.map(
-        p => <Link className={classes.link} key={p.id} to={`/palette/${p.id}`}>
-            <MiniPalette {...p}/>
+        (p) => <Link className={classes.link} key={p.id} to={`/palette/${p.id}`}>
+            <MiniPalette key={p.id} {...p}/>
         </Link>
     )
 

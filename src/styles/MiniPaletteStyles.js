@@ -1,3 +1,5 @@
+import { Transform } from "@material-ui/icons";
+
 const styles = {
     root: {
         backgroundColor: 'white',
@@ -5,8 +7,9 @@ const styles = {
         padding: '0.5rem',
         position: 'relative',
         overflow: 'hidden',
-        '&hover': {
-            cursor: 'pointer'
+        cursor: 'pointer',
+        '&:hover svg': {
+            right: '-17px'
         }
     },
     colors: {
@@ -36,6 +39,20 @@ const styles = {
         margin: '0 auto',
         position: 'relative',
         marginBottom: '-3px'   
+    },
+    delete: {},
+    deleteForever: {
+        marginLeft: '0',
+        color: 'white',
+        backgroundColor: '#dd0022',
+        height: '28px',
+        width: '28px',
+        position: 'absolute',
+        right: '-100px',
+        bottom: '0px',
+        borderRadius: '4px',
+        padding: '3px 30px 3px 5px',
+        zIndex: 10,
     }
 }
 export default styles;
