@@ -20,7 +20,11 @@ function App() {
   function savePalette(newPalette){
     setPalettes([...palettes, newPalette])
   }
-  
+
+  function deletePalette(id){
+    setPalettes(palettes.filter(p => p.id !== id));
+  }
+
   function syncLocalStorage(){
     window.localStorage.setItem("palettes", JSON.stringify(palettes));
   }
@@ -32,7 +36,7 @@ function App() {
 
   return (
     <Routes>
-        <Route path='/' element={<PaletteList palettes={palettes}/>}/>
+        <Route path='/' element={<PaletteList palettes={palettes} deletePalette={deletePalette}/>}/>
         <Route path='/palette/new' element={<NewPaletteForm savePalette={savePalette} palettes={palettes}/>}/>
         {/* <Route path='/test' element={ }/> */}
         <Route path='palette/:id' element={<Palette findPalette={findPalette}/>}/>

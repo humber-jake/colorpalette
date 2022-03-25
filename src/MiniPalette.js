@@ -4,16 +4,25 @@ import styles from './styles/MiniPaletteStyles.js'
 import { DeleteForever } from '@material-ui/icons'
 
 function MiniPalette(props) {
-    const { classes, paletteName, emoji, colors} = props;
+    const { classes, paletteName, emoji, colors, id, deletePalette} = props;
+
     const thumbnails = colors.map(c => (
         <div key={c.color} className={classes.miniColor} style={{backgroundColor: c.color}}/>
     ))
+    
+
+    function handleDelete(e){
+        e.preventDefault();
+        deletePalette(id);
+    }
+
     return (
         <div className={classes.root}>
             <div className={classes.delete}>
                 <DeleteForever 
                     className={classes.deleteForever}
                     style={{transition: 'all 200ms ease-in-out'}}
+                    onClick={handleDelete}
                 />
             </div>
             <div className={classes.colors}>

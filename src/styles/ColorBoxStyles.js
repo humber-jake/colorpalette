@@ -1,4 +1,5 @@
 import { DYNAMIC_TEXT_COLOR, DYNAMIC_BUTTON_COLOR } from '../constants'
+import sizes from './sizes'
 
 const styles = {
     boxContent: {
@@ -22,7 +23,19 @@ const styles = {
         "&:hover button": {
             opacity: 1,
             transition: "opacity 200ms linear"
-        }
+        },
+        [sizes.andDown("lg")]: {
+            width: "25%",
+            height: props => (props.showingFullPalette ? "20%" : "33.3333%")
+          },
+          [sizes.andDown("md")]: {
+            width: "50%",
+            height: props => (props.showingFullPalette ? "10%" : "20%")
+          },
+          [sizes.andDown("xs")]: {
+            width: "100%",
+            height: props => (props.showingFullPalette ? "5%" : "10%")
+          },
     },
     colorName: {
         color: DYNAMIC_TEXT_COLOR

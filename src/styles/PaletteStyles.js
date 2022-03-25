@@ -1,9 +1,15 @@
+import sizes from './sizes'
+
 const styles = {
     palette: {
         height: '100vh',
-        overflow: 'hidden',
+        overflowX: 'hidden',
+        overflowY: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        [sizes.andDown("lg")]: {
+            overflowY: 'auto'
+          },
     },
     colors: {
         height: '90%'
