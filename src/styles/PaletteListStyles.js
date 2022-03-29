@@ -4,6 +4,15 @@ import bg from './bg.svg'
 // Background courtesy of svgbackgrounds.com
 
 const styles = {
+    "@global": {
+        '.fade-exit': {
+            opacity: 1
+        },
+        '.fade-exit-active': {
+            opacity: 0,
+            transition: 'opacity 500ms ease-out'
+        },
+    },
     root: {
         backgroundColor: '#FFF6DC',
         backgroundImage: `url(${bg})`,
