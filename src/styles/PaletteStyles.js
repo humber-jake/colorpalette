@@ -1,15 +1,6 @@
 import sizes from './sizes'
 
 const styles = {
-    "@global": {
-        '.fade-exit': {
-            opacity: 1
-        },
-        '.fade-exit-active': {
-            opacity: 0,
-            transition: 'opacity 500ms ease-out'
-        },
-    },
     palette: {
         height: '100vh',
         overflowX: 'hidden',
