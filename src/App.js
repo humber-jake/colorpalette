@@ -45,6 +45,7 @@ function App() {
           <Route path='/palette/new' element={<NewPaletteForm savePalette={savePalette} palettes={palettes}/>}/>
           <Route path='palette/:id' element={<Palette findPalette={findPalette}/>}/>
           <Route path='/palette/:paletteId/:colorId' element={<SingleColorPalette findPalette={findPalette}/>}/>
+          <Route path='*' element={<PaletteList palettes={palettes} deletePalette={deletePalette}/>}/>
         </Routes>
       </CSSTransition>
     </TransitionGroup>

@@ -14,7 +14,6 @@ const styles = {
         },
     },
     root: {
-        backgroundColor: '#FFF6DC',
         backgroundImage: `url(${bg})`,
         backgroundAttachment: 'scroll',
         height: '100%',

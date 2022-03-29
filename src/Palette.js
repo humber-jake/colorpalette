@@ -8,7 +8,6 @@ import { withStyles } from "@material-ui/styles"
 import styles from './styles/PaletteStyles.js'
 
 function Palette(props){
-
     const { classes, findPalette } = props;
     let { id } = useParams();
     let palette = generatePalette(findPalette(id));
@@ -19,10 +18,12 @@ function Palette(props){
         <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color} showFullPalette/>
     ))
 
-    const changeLevel = level => {
+
+
+    function changeLevel(level){
         setLevel(level);
     }
-    const updateFormat = f => {
+    function updateFormat(f){
         setFormat(f)
     }
 

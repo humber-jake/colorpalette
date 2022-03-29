@@ -38,7 +38,7 @@ const styles = {
         display: 'inline-block',
         margin: '0 auto',
         position: 'relative',
-        marginBottom: '-3px'   
+        marginBottom: '-3px !important'   
     },
     delete: {},
     deleteForever: {
