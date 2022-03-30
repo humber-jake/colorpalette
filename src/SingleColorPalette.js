@@ -3,6 +3,7 @@ import Navbar from './Navbar.js';
 import { useParams, Link } from 'react-router-dom';
 import { generatePalette } from './ColorHelpers.js';
 import ColorBox from './ColorBox.js';
+import NotFound from './NotFound.js';
 import PaletteFooter from "./PaletteFooter.js"
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles.js'
@@ -11,9 +12,13 @@ function SingleColorPalette(props) {
 
     const { classes, findPalette } = props;
     let { paletteId, colorId } = useParams();
-    let palette = generatePalette(findPalette(paletteId));
-
     const [format, setFormat] = useState('hex')
+    let foundPalette = findPalette(paletteId);
+
+    if(!foundPalette) return <NotFound missingItem='palette'/>
+
+    let palette = generatePalette(foundPalette);
+
     const updateFormat = f => {
         setFormat(f)
     }
@@ -31,6 +36,7 @@ function SingleColorPalette(props) {
     }
 
     let shades = getShades(palette, colorId);
+    if(shades.length === 0) return <NotFound missingItem='color'/>
 
     let colorBoxes = shades.map(s =>
             <ColorBox key={s.name} {...s} background={s[format]} showFullPalette={false}/>

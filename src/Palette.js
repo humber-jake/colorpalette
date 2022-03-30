@@ -6,13 +6,19 @@ import { generatePalette } from './ColorHelpers';
 import PaletteFooter from './PaletteFooter.js';
 import { withStyles } from "@material-ui/styles"
 import styles from './styles/PaletteStyles.js'
+import NotFound from './NotFound';
 
 function Palette(props){
+
     const { classes, findPalette } = props;
     let { id } = useParams();
-    let palette = generatePalette(findPalette(id));
+    let foundPalette = findPalette(id)
     const [level, setLevel] = useState(500)
     const [format, setFormat] = useState('hex')
+    
+    if(!foundPalette) return <NotFound missingItem='palette'/>
+    
+    let palette = generatePalette(foundPalette);
     const { colors } = palette;
     const colorBoxes = colors[level].map(color => (
         <ColorBox key={color.name} paletteId={palette.id} background={color[format]} {...color} showFullPalette/>
@@ -35,7 +41,10 @@ function Palette(props){
                 updateFormat={updateFormat}
                 showSlider
             />
-            <div className={classes.colors}>{colorBoxes}</div>
+            <div className={classes.colors}>
+                {colorBoxes}
+            </div>
+
             <PaletteFooter {...palette}/>
         </div>
     );

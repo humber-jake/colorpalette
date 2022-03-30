@@ -1,18 +1,7 @@
 import sizes from './sizes'
 import bg from './bg.svg'
 
-// Background courtesy of svgbackgrounds.com
-
 const styles = {
-    "@global": {
-        '.fade-exit': {
-            opacity: 1
-        },
-        '.fade-exit-active': {
-            opacity: 0,
-            transition: 'opacity 500ms ease-out'
-        },
-    },
     root: {
         backgroundImage: `url(${bg})`,
         backgroundAttachment: 'scroll',
@@ -34,6 +23,22 @@ const styles = {
         [sizes.andDown("xs")]: {
             width: "75%"
         },
+        "& div":{
+            marginTop: '3rem',
+            padding: '2.5rem',
+            borderRadius: '25px',
+            backgroundColor: '#ffffffaa',
+            "& h1":{
+                marginTop: '2rem',
+                marginBottom: '2rem',
+                fontSize: '3rem',
+                color: '#f0729b'
+            },
+            "& p":{
+                color: '#7d9dbf',
+                fontSize: '1.25rem'
+            },   
+        }
     },
     nav: {
         display: 'flex',
@@ -57,27 +62,6 @@ const styles = {
             marginBottom: 0,
             textShadow: '3px 3px #99badd'
             
-        }
-    },
-    palettes: {
-        boxSizing: 'border-box',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '2.25rem',
-        [sizes.andDown("md")]: {
-            gridTemplateColumns: "repeat(2, 50%)"
-        },
-        [sizes.andDown("xs")]: {
-            gridTemplateColumns: "repeat(1, 100%)",
-            gridGap: "1.4rem"
-        },
-        '& a': {
-            borderRadius: '4px',
-            boxShadow: '3px 3px #99badd',
-            '&:hover':{
-                boxShadow: '0px 0px 10px white'
-            }   
         }
     },
     link: {

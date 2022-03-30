@@ -1,5 +1,3 @@
-import { Transform } from "@material-ui/icons";
-
 const styles = {
     root: {
         backgroundColor: 'white',
@@ -38,7 +36,7 @@ const styles = {
         display: 'inline-block',
         margin: '0 auto',
         position: 'relative',
-        marginBottom: '-3px !important'   
+        marginBottom: '-3px'   
     },
     delete: {},
     deleteForever: {
