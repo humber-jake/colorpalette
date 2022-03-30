@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { arrayMove } from 'react-sortable-hoc';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import NewPaletteFormNav from './NewPaletteFormNav.js';
@@ -8,14 +9,13 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button'
 import DraggableColorList from './DraggableColorList.js'
-import { arrayMove } from 'react-sortable-hoc';
 import useStyles from './styles/NewPaletteFormStyles'
 
 function NewPaletteForm(props) {
   
   const {palettes, savePalette} = props;
-  
   const classes = useStyles();
+
   const [open, setOpen] = useState(true);
   const [colors, setColors] = useState(palettes[0].colors);
   
@@ -29,6 +29,7 @@ function NewPaletteForm(props) {
     setOpen(false);
   };
 
+  // function for draggable sorting library
   function onSortEnd({oldIndex, newIndex}){
     setColors(
       arrayMove(colors, oldIndex, newIndex)
@@ -44,6 +45,7 @@ function NewPaletteForm(props) {
     setColors([]);
   }
 
+  // generate random color, push to new palette if not duplicate
   function addRandomColor(){
     const allColors = palettes.map(p => p.colors).flat();
     let rand;

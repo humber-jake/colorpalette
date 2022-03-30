@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
-import ColorBox from './ColorBox';
 import { useParams } from 'react-router-dom';
 import { generatePalette } from './ColorHelpers';
-import PaletteFooter from './PaletteFooter.js';
 import { withStyles } from "@material-ui/styles"
-import styles from './styles/PaletteStyles.js'
+import Navbar from './Navbar';
+import ColorBox from './ColorBox';
+import PaletteFooter from './PaletteFooter.js';
 import NotFound from './NotFound';
+import styles from './styles/PaletteStyles.js'
 
 function Palette(props){
 

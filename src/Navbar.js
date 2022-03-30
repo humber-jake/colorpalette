@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Slider from 'rc-slider';
 import { Link } from 'react-router-dom'
 import { IconButton, MenuItem, Select } from '@material-ui/core';
 import { Snackbar } from '@material-ui/core';
 import { Close } from '@material-ui/icons'
 import { withStyles } from '@material-ui/styles';
+import Slider from 'rc-slider';
 import styles from './styles/NavbarStyles.js'
 import 'rc-slider/assets/index.css';
 
@@ -12,14 +12,16 @@ function Navbar(props){
         const { level, changeLevel, updateFormat, showSlider, classes } = props;
         const [format, setFormat] = useState('hex');
         const [open, setOpen] = useState(false);
-        const handleChange = (e) => {
+
+        function handleChange(e){
             setFormat(e.target.value)
             updateFormat(e.target.value);
             setOpen(true);
         }
-        const closeSnackbar = () => {
+        function closeSnackbar(){
             setOpen(false);
         }
+
         return (
 
             <header className={classes.Navbar}>
@@ -63,7 +65,7 @@ function Navbar(props){
                             color='inherit'
                             key='close'
                             aria-label='close'
-                        >
+                            >
                             <Close />
                         </IconButton>
                           ]}

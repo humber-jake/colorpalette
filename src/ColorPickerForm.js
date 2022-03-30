@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button'
 import {ChromePicker} from 'react-color'
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import styles from './styles/ColorPickerFormStyles'
 import {withStyles} from '@material-ui/core/styles/';
+import Button from '@material-ui/core/Button'
+import styles from './styles/ColorPickerFormStyles'
 
 function ColorPickerForm(props) {
+
     const { colors, setColors, isPaletteFull, classes } = props;
     const [currentColor, setCurrentColor] = useState('');
     const [newColorName, setNewColorName] = useState('');
 
+    // validate unique color names
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
           return colors.every(
@@ -18,6 +20,7 @@ function ColorPickerForm(props) {
         });
       });
 
+    // validate unique color values
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorUnique", value => {
           return colors.every(

@@ -1,21 +1,24 @@
-import './styles/App.css';
 import { useEffect, useState } from 'react';
-import Palette from './Palette';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import SeedColors from './seedColors.js';
-import PaletteList from './PaletteList';
-import SingleColorPalette from './SingleColorPalette';
-import NewPaletteForm from './NewPaletteForm';
 import { TransitionGroup, CSSTransition } from "react-transition-group"
+import NewPaletteForm from './NewPaletteForm';
+import Palette from './Palette';
+import PaletteList from './PaletteList';
+import SeedColors from './seedColors.js';
+import SingleColorPalette from './SingleColorPalette';
+import './styles/App.css';
 
 function App() {
 
+  // Variables
   const location = useLocation()
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-
+  
+  // State
   const [palettes, setPalettes] = useState( savedPalettes || [...SeedColors]);
   
-  const findPalette = id => {
+  // Functions
+  function findPalette(id){
     return palettes.find(palette => palette.id === id)
   }
 

@@ -1,29 +1,31 @@
 import React from 'react';
-import './styles/CopyMessage.css'
 import chroma from 'chroma-js'
+import './styles/CopyMessage.css'
 
 function CopyMessage(props) {
 
     const { background } = props;
 
-    const textColor = (background) => {
+    // use 'background' color prop to determine dark or light dynamic class for the text and the animated object
+    function textColor(){
         return  chroma(background).luminance() > 0.06 ? 'text-dark' : 'text-light'
     }
-    const backgroundColor = (background) => {
+    function backgroundColor(){
         return  chroma(background).luminance() > 0.06 ? 'background-dark' : 'background-light'
     }
 
     return (
-       
         <div className='Copy-Message' style={{backgroundColor: background}}>
+
+            {/* animated object code */}
             <div className="stage">
-                <div className={`wrapper ${textColor(background)}`}>
-                    <div className={`slash ${backgroundColor(background)}`}></div>
-                    <div className={`sides ${textColor(background)}`}>
-                        <div className={`side ${backgroundColor(background)}`}></div>
-                        <div className={`side ${backgroundColor(background)}`}></div>
-                        <div className={`side ${backgroundColor(background)}`}></div>
-                        <div className={`side ${backgroundColor(background)}`}></div>
+                <div className={`wrapper ${textColor()}`}>
+                    <div className={`slash ${backgroundColor()}`}></div>
+                    <div className={`sides ${textColor()}`}>
+                        <div className={`side ${backgroundColor()}`}></div>
+                        <div className={`side ${backgroundColor()}`}></div>
+                        <div className={`side ${backgroundColor()}`}></div>
+                        <div className={`side ${backgroundColor()}`}></div>
                     </div>
                     <div className="text">
                         <div className="text--backing">Copied!</div>
@@ -36,7 +38,9 @@ function CopyMessage(props) {
                     </div>
                 </div>
             </div>
-            <div className={`colorName ${textColor(background)}`}>
+
+            {/* Color value */}
+            <div className={`colorName ${textColor()}`}>
                 {background}
             </div>
         </div>
